@@ -184,9 +184,9 @@ def _check_private_address(args):
   if args.use_private_address:
     image = args.image or DEFAULT_IMAGE
     split = image.split('/', 1)
-    if len(split) == 1 or not split[0].endswith('gcr.io'):
+    if len(split) == 1 or (not split[0].endswith('gcr.io') and not split[0].endswith('pkg.dev')):
       raise ValueError(
-          '--use-private-address must specify a --image with a gcr.io host')
+          '--use-private-address must specify a --image with a gcr.io host or a pkg.dev host')
 
 
 def _check_nvidia_driver_version(args):
